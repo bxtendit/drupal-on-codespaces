@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
 COPY php.ini /tmp
@@ -9,9 +9,9 @@ RUN apt-get update -yq \
     # Install PHP CLI with some extensions for Drupal development
     && apt-get install php-cli php-apcu php-curl php-dom php-gd php-imagick php-mbstring php-sqlite3 php-zip -yq \
     && apt-get install php-pear php-dev -yq \
-    && pear config-set php_ini /etc/php/7.4/cli/php.ini \
+    && pear config-set php_ini /etc/php/8.1/cli/php.ini \
     && pecl install xdebug \
-    && cat /tmp/php.ini >> /etc/php/7.4/cli/php.ini \
+    && cat /tmp/php.ini >> /etc/php/8.1/cli/php.ini \
     # Install NodeJS LTS
     && curl -sL https://deb.nodesource.com/setup_lts.x | bash \
     && apt-get install nodejs -yq \
